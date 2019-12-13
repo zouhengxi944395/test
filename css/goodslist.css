@@ -1,0 +1,338 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-size: 14px;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    text-indent: 20px;
+  }
+  
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #999;
+    font-size: 16px;
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #999;
+    font-size: 16px;
+  }
+
+
+/******************** header ********************/
+.header{
+    width: 100%;
+    height: 100px;
+    /* background: red; */
+    overflow: hidden;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    background: #fff;
+}
+
+.header .logo{
+    width: 15%;
+    height: 100px;
+    text-align: center;
+    float: left;
+    background: #fff;
+}
+.header .logo img{
+    width: 100px;
+    height: 33px;
+    margin-top: 35px;
+}
+
+.header .navbar{
+    float: right;
+    margin-right: 70px;
+    margin-top: 30px;;
+    /* background: yellow; */
+}
+.header .navbar .search{
+    height: 30px;
+    line-height: 30px;
+    float: left;
+}
+.header .navbar .search input{
+    width: 200px;
+    height: 20px;
+    outline: none;
+    background: rgba(0, 0, 0, 0);
+    border: none;
+    border-bottom: 1px solid #000;
+}
+.header .navbar .search button{
+    height: 20px;
+    font-size: 16px;
+    font-weight: bolder;
+    outline: none;
+    border: none;
+    background: rgba(0, 0, 0, 0);
+    cursor: pointer;
+}
+.header .navbar .list{
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 40px;
+}
+.header .navbar .list span{
+    margin-right: 15px;
+    cursor: pointer;
+}
+.header .navbar .list img{
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+.wrapbox{
+    height: 100px;
+}
+
+
+/******************** content ********************/
+.content{
+    width: 100%;
+    /* height: 730px; */
+    /* margin-top: 100px; */
+    margin-bottom: 50px;
+    overflow: hidden;
+    /* background: blue; */
+}
+.content .aside{
+    width: 15%;
+    /* height: 100%; */
+    float: left;
+    background: #fff;
+    overflow: hidden;
+}
+.content .aside .asidenav{
+    width: 105px;
+    margin: 0 auto;
+}
+.content .aside .topnav{
+    overflow: hidden;
+}
+.content .aside .topnav >p{
+    font-size: 18px;
+    font-weight: bolder;
+    margin-top: 12px;
+}
+.content .aside .topnav .list{
+    cursor: pointer;
+    user-select: none;
+}
+.content .aside .topnav .hide{
+    overflow: hidden;
+    display: none;
+}
+.content .aside .topnav .hide >p{
+    margin-top: 10px;
+    cursor: pointer;
+}
+.content .aside .topnav .line{
+    color: #d9d9d9;
+    font-size: 10px;
+    font-weight: normal;
+    margin-top: 0px;
+}
+.content .aside .topnav #lastp a{
+    color: #CF5A4A;
+}
+
+.content .aside .footernav{
+    font-size: 12px;
+    margin-top: 90px;
+}
+.content .aside .footernav p{
+    margin-bottom: 10px;
+}
+.content .aside .footernav .hide{
+    margin-left: 15px;
+    display: none;
+}
+
+.content .banner{
+    width: 80%;
+    height: 100%;
+    float: left;
+    overflow: hidden;
+    padding-right: 5%;
+}
+.content .banner .goodsnav{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 20px;
+    /* background: skyblue; */
+}
+.content .banner .goodsnav .navleft{
+    width: 20%;
+    float: left;
+    color: #666;
+}
+.content .banner .goodsnav .navleft .allgoods{
+    font-size: 16px;
+    color: #03224b;
+    margin-right: 10px;
+}
+.content .banner .goodsnav .navright{
+    width: 31%;
+    float: right;
+}
+.content .banner .goodsnav .navright .searchresult{
+    margin-right: 20px;
+}
+.content .banner .goodsnav .navright a{
+    font-size: 14px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+.content .banner .goodsnav .navright .two{
+    color: #666;
+}
+.content .banner .goodsnav .navright .four{
+    margin-right: 20px;
+}
+.content .banner .goodsnav .navright select{
+    padding: 7px 15px;
+    width: 144px;
+    border: 1px solid #03224b;
+    outline: none;
+}
+.content .banner .goodslist{
+    width: 100%;
+    /* background: pink; */
+    overflow: hidden;
+}
+.content .banner .goodslist li{
+    width: 25%;
+    border: 1px solid #fff;
+    border-radius: 3px;
+    box-sizing: border-box;
+    float: left;
+    list-style: none;
+    padding: 10px;
+    position: relative;
+    overflow: hidden;
+}
+.content .banner .goodslist li:hover{
+    border: 1px solid #d9d9d9;
+}
+.content .banner .goodslist li img{
+    width: 100%;
+    max-height: 650px;
+}
+.content .banner .goodslist li .new{
+    width: 35px;
+    height: 20px;
+    text-align: center;
+    font-size:12px;
+    padding: 1px;
+    box-sizing: border-box;
+    color: #fff;
+    background: #03234c;
+    position: absolute;
+    right: 10px;
+    top: 7px;
+}
+.content .banner .goodslist li .goodsname{
+    margin-top: 10px;
+}
+.content .banner .goodslist .noSpan{
+    margin-left: 500px;
+}
+
+.content .banner .box{
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+
+/******************** footer ********************/
+.footer{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 13px;
+    color: #fff;
+    padding: 0 40px;
+    box-sizing: border-box;
+    background: #03234c;
+}
+.footer p{
+    float: left;
+    margin-left: 20px;
+}
+.footer .media{
+    margin-left: 30px;
+}
+.footer span{
+    float: left;
+}
+.footer .pic{
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+}
+.footer .pic1{
+    margin-left: 8px;
+    margin-right: 15px;
+    background-image: url(../image/icon1.png);
+    background-size: 30px 30px;
+}
+.footer .pic1:hover{
+    background: url(../image/icon2.png);
+    background-size: 30px 30px;
+}
+.footer .pic2{
+    margin-right: 8px;
+    background: url(../image/icon3.png);
+    background-size: 30px 30px;
+}
+.footer .pic2:hover{
+    background: url(../image/icon4.png) center center;
+    background-size: 30px 32.3px;
+}
+.footer .pic2:hover{
+    background-position: 0px -130px;
+}
+.footer p:last-child{
+    float: right;
+    color: #888;
+}
+
+
+/******************** service ********************/
+.service{
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    background: #fff;
+    border: 1px solid #000;
+    border-right: 0;
+    position: fixed;
+    right: 0;
+    bottom: 100px;
+    text-align: center;
+    cursor: pointer;
+}
+.service img{
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 5px;
+}

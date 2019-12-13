@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/shoppingcar.css">
+    <script src="../js/jquery-1.10.1.min.js"></script>
+    <script src="../js/cookie.js"></script>
+</head>
+
+<body>
+    <!-- 导航 -->
+    <div class="header">
+        <div class="logo">
+            <a href="index.html"><img src="../image/logo.png" alt=""></a>
+        </div>
+        <div class="navbar">
+            <div class="search">
+                <input type="text" value="卫衣" id="searchCon">
+                <button id="searchBtn">搜索</button>
+            </div>
+            <div class="list">
+                <span class="loginspan"><a href="login.html">登录</a></span>
+                <span class="regspan"><a href="regist.html">注册</a></span>
+                <a href="shoppingcar.html"><img src="../image/shopcar.png" alt=""></a>
+                <a href="shoppingcar.html"><span class="countSpan"></span></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapbox"></div>
+
+    <!-- 内容 -->
+    <div class="content">
+        <p>购物车</p>
+        <div class="address">
+            <h3>收货人信息</h3>
+            <div class="shippingAddress">
+                <a href="#">
+                    <img src="../image/add-addr.png" alt="">
+                    <p>添加收货地址</p>
+                </a>
+            </div>
+        </div>
+        <div class="shopcar">
+            <div class="shopheader">
+                <p class="msg">商品信息</p>
+                <p class="price">单价</p>
+                <p class="count">数量</p>
+                <p class="total">小计</p>
+                <p class="play">操作</p>
+            </div>
+            <div class="check">
+                <input type="checkbox" class="check-all">
+                <span>普通商品</span>
+            </div>
+            <div class="shopcarlist">
+                <!-- <div class="carlist">
+                    <input type="checkbox">
+                    <div class="imginfo">
+                        <img src="../image/goodslist1.jpg" alt="">
+                        <p>
+                            男士时尚运动长袖T<br>
+                            传奇蓝/L
+                        </p>
+                    </div>
+                    <div class="priceinfo">
+                        <small>￥</small>
+                        <span>576.000</span>
+                    </div>
+                    <div class="countinfo">
+                        <button class="leftbtn">-</button>
+                        <input class="countinp" type="text" value="1">
+                        <button class="rightbtn">+</button>
+                    </div>
+                    <div class="totalinfo">
+                        <span>￥</span>
+                        <span class="oneprice">576</span>
+                    </div>
+                    <div class="delinfo">
+                        <span class="delspan">删除</span>
+                    </div>
+                </div> -->
+            </div>
+
+            <div class="account">
+                <p><span class="goodstotal">0</span> 件商品</p>
+                <p>商品总价：￥ <span class="pricetotal">0</span></p>
+                <p>注册有礼（仅限官网）： -￥ 50</p>
+                <p>免邮标准： +￥ 0</p>
+                <p class="pagetotal">订单结算 ￥ <span class="pageprice">0</span></p>
+            </div>
+
+            <div class="actfooter">
+                <button class="actbtn"><a href="">去结算</a></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <div class="footer">
+        <p>购物服务</p>
+        <p>关于品牌</p>
+        <p>查找门店</p>
+        <p class="media">
+            <span>关注FILA的官方媒体:</span>
+            <a href="#"><span class="pic pic1"></span></a>
+            <a href="#"><span class="pic pic2"></span></a>
+        </p>
+        <p>售后服务电话: 400-886-7699</p>
+        <p>©FILA体育 闽ICP备11020421号-8</p>
+    </div>
+
+    <!-- 服务 -->
+    <div class="service">
+        <img src="../image/service.png" alt="">
+        <span>客 服</span>
+    </div>
+</body>
+<script>
+
+    // 查询是否登陆
+    var phone = getCookie("phone");
+    if (phone) {
+        $(".loginspan").html(phone);
+        $(".regspan").html("退出").click(function () {
+            setCookie("phone", "", -1);
+            location.href = "";
+        });
+    }
+
+    var phoneacc = "admin";
+    if (phone) {
+        phoneacc = phone;
+    }
+
+    updateCount();
+
+
+    $("#searchBtn").click(function () {
+        var key = $("#searchCon").val();
+        location.href = `goodslist.html?key=${key}`;
+    })
+
+
+    // 左侧导航展开
+    $(".footernav p").click(function () {
+        var display = $(this).next().css("display");
+        if (display == "block") {
+            $(this).next().css("display", "none");
+        }
+        else if (display == "none") {
+            $(this).siblings(".hide").css("display", "none");
+            $(this).next().css("display", "block");
+        }
+    })
+
+    $(".topnav .list").click(function () {
+        var display = $(this).next().css("display");
+        if (display == "block") {
+            $(this).next().css("display", "none");
+        }
+        else if (display == "none") {
+            $(this).siblings(".hide").css("display", "none");
+            $(this).next().css("display", "block");
+        }
+    })
+
+
+
+
+    var actbtn = document.querySelector(".actbtn");
+
+
+    // 去结算
+    actbtn.onclick = function () {
+
+        var price = $(".pageprice").html();
+        if (price > 0) {
+            if (phone) {
+                alert("恭喜你，已经结算!");
+            }
+            else {
+                if (confirm("您还没有登录,是否立即登录?")) {
+                    // $.ajax({
+                    //     type: "get",
+                    //     url: "../php/adminsearch.php",
+                    //     dataType: "json",
+                    //     success: function (result) {
+                    //         console.log(result);
+                    //         result.forEach(item => {
+                    //             var { id, phone, goodsId, goodsImg, goodsName, goodsSize, goodsCount, goodsPrice } = item;
+                    //             $.ajax({
+                    //                 type: "get",
+                    //                 url: "../php/phonesearch.php",
+                    //                 data: {
+                    //                     goodsId: goodsId,
+                    //                     goodsSize: goodsSize,
+                    //                     phone: phone
+                    //                 },
+                    //                 dataType: "json",
+                    //                 success: function (result) {
+                    //                     console.log(result);
+                    //                     if (result) {
+                    //                         $.ajax({
+                    //                             type: "get",
+                    //                             url: "../php/phoneupdate.php",
+                    //                             data: {
+                    //                                 id: id,
+                    //                                 goodsCount: goodsCount
+                    //                             },
+                    //                             dataType: "json",
+                    //                             success: function (result) {
+                    //                                 console.log(result);
+                    //                             }
+                    //                         }) // 更新
+                    //                     }
+                    //                     else {
+                    //                         $.ajax({
+                    //                             type: "get",
+                    //                             url: "../php/phoneupinsert.php",
+                    //                             data: {
+                    //                                 phone:phone,
+                    //                                 goodsId:goodsId,
+                    //                                 goodsImg:goodsImg,
+                    //                                 goodsName:goodsName,
+                    //                                 goodsSize:goodsSize,
+                    //                                 goodsCount:goodsCount,
+                    //                                 goodsPrice:goodsPrice
+                    //                             },
+                    //                             dataType: "json",
+                    //                             success: function (result) {
+                    //                                 console.log(result);
+                    //                             }
+                    //                         }) // 新增
+                    //                     }
+                    //                 }
+                    //             })
+                    //         })
+                    //     }
+                    // })
+
+                    setCookie("backUrl", encodeURIComponent(location.href), 7);
+                    location.href = "login.html";
+                }
+            }
+        }
+        else {
+            alert("请选择需要购买的商品!");
+        }
+
+    }
+
+
+
+
+
+
+
+    // 动态生成购物车
+    $.ajax({
+        type: "get",
+        url: "../php/showcar.php",
+        data: {
+            phone: phoneacc
+        },
+        dataType: "json",
+        success: function (result) {
+            console.log(result);
+            createHTML(result);
+            addEvent();
+        }
+    })
+
+
+
+
+    var shopcarlist = document.querySelector(".shopcarlist");
+
+    function createHTML(arr) {
+        if (!Array.isArray(arr)) {
+            var err = new Error("Pass in an array,please");
+            throw err;
+        }
+
+        var html = "";
+
+        if (arr.length > 0) {
+            arr.forEach(item => {
+                var { goodsId, goodsImg, goodsName, goodsSize, goodsCount, goodsPrice } = item;
+                html += `<div class="carlist" s_id="${goodsId}">
+                    <input type="checkbox" class="check-one">
+                    <div class="imginfo">
+                        <img src="../image/${goodsImg}" alt="">
+                        <p>
+                            ${goodsName}<br>
+                            传奇蓝/${goodsSize}
+                        </p>
+                    </div>
+                    <div class="priceinfo">
+                        <small>￥</small>
+                        <span class="goodprice">${goodsPrice}</span>
+                    </div>
+                    <div class="countinfo">
+                        <button class="leftbtn">-</button>
+                        <input class="countinp" type="text" value="${goodsCount}">
+                        <button class="rightbtn">+</button>
+                    </div>
+                    <div class="totalinfo">
+                        <span>￥</span>
+                        <span class="oneprice">${(goodsPrice * goodsCount).toFixed(2)}</span>
+                    </div>
+                    <div class="delinfo">
+                        <span class="delspan">删除</span>
+                    </div>
+                </div>`;
+            })
+            shopcarlist.innerHTML = html;
+        }
+        else {
+            shopcarlist.innerHTML = `<span class="noSpan">暂无数据</span>`;
+        }
+    };
+
+
+
+
+
+    function addEvent() {
+        var checkAll = document.querySelector(".check-all");
+        var checkOneList = document.querySelectorAll(".check-one");
+        var delList = document.getElementsByClassName("delspan");
+        var selectedTotal = document.querySelector(".goodstotal");
+        var priceTotal = document.querySelector(".pricetotal");
+        var pagePrice = document.querySelector(".pageprice");
+        var addList = document.getElementsByClassName("rightbtn");
+        var reduceList = document.getElementsByClassName("leftbtn");
+
+
+        // 点击加号  
+        // (1) 加号前的numInp 加一 
+        // (2) 减号"-"显示 
+        // (3) 小计更新
+
+        for (let i = 0; i < addList.length; i++) {
+            let add = addList[i];
+            add.onclick = function () {
+                // console.log(this);
+
+                //(1)  加号前的numInp 加一
+                var countInp = before(this); // 获取加号前的  计数框
+                // console.log(countInp);
+                var num = countInp.value;
+                num++;
+                countInp.value = num;
+                // countInp.value++;   // countInp.value = countInp.value+1;
+
+                //(2)  减号 "-"   显示
+                // var reduce = before(countInp);
+                // console.log(reduce);
+                // reduce.innerHTML = "-";
+
+                //(3)  小计更新
+                var parentTd = this.parentElement;
+                var priceTd = before(parentTd);   //  获取单价的dom元素  td  
+                var subtotalTd = next(parentTd);  // 获取小计的dom元素  td
+                // console.log(priceTd, subtotalTd);
+
+                var price = priceTd.getElementsByClassName("goodprice")[0].innerText; // 获取单价
+                var subtotal = price * num; //  小计 = 单价*数量
+                subtotalTd.getElementsByClassName("oneprice")[0].innerText = subtotal.toFixed(2);
+
+                var parentTr = parentTd.parentElement;
+                var id = parentTr.getAttribute("s_id");
+                $.ajax({
+                    type: "get",
+                    url: "../php/updatecar.php",
+                    data: {
+                        goodsId: id,
+                        bool: 1
+                    },
+                    dataType: "json",
+                    success: function (res) {
+                        console.log(res);
+                        if (res.status) {
+                            // alert("新增成功")
+                        } else {
+                            alert("删除失败");
+                        }
+                    }
+                })
+
+                // subtotal.toFixed(n)    保留n位小数
+
+                // subtotalTd.innerText = subtotal.toFixed(2);
+
+                getTotal();
+
+
+            }
+        }
+
+
+
+
+
+        // 点击减号
+        // (0) 在减之前判断   如果countInp的数量为1 的时候  不减一
+        // (1) countInp  的数量  减一
+        // (2) 在减之后判断  countInp 的数量由 2 变成 1的时候 要把"-"  消失
+        // (3) 小计更新
+
+        for (var i = 0; i < reduceList.length; i++) {
+            var reduce = reduceList[i];
+            reduce.onclick = function () {
+                // this.nextElementSibling
+                // console.log(this.nextElementSibling, this.nextSibling);
+                var countInp = next(this);
+
+                var num = countInp.value;
+                // (0)在减之前判断  如果countInp的数量为1 的时候  不减一
+                if (num == 1) {
+                    console.log("数量为1,不能在减了");
+                    return false;
+                }
+
+                //(1) countInp  的数量  减一
+                num--;
+
+                // (2)  countInp 的数量由 2 变成 1的时候 要把"-"  消失
+                // if (num == 1) {
+                //     this.innerText = "";
+                // }
+                countInp.value = num;
+
+                var parentTd = this.parentElement;
+                var priceTd = before(parentTd);
+                var subtotalTd = next(parentTd);
+
+                var price = priceTd.getElementsByClassName("goodprice")[0].innerText;
+                var subtotal = price * num;
+                subtotalTd.getElementsByClassName("oneprice")[0].innerText = subtotal.toFixed(2);
+
+                var parentTr = parentTd.parentElement;
+                var id = parentTr.getAttribute("s_id");
+                $.ajax({
+                    type: "get",
+                    url: "../php/updatecar.php",
+                    data: {
+                        phone: phoneacc,
+                        goodsId: id,
+                        bool: "0"
+                    },
+                    dataType: "json",
+                    success: function (res) {
+                        console.log(res);
+                        if (res.status) {
+                            // alert("新增成功")
+                        } else {
+                            alert("删除失败");
+                        }
+                    }
+                })
+
+                getTotal();
+            }
+        }
+
+
+
+
+        // 单删
+        for (var i = 0; i < delList.length; i++) {
+            var del = delList[i];
+            del.onclick = function () {
+                var parentTr = this.parentNode.parentNode;
+                if (confirm("是否删除该商品?")) {
+                    var id = parentTr.getAttribute("s_id");
+                    console.log(id);
+
+                    $.ajax({
+                        type: "get",
+                        url: "../php/delcar.php",
+                        data: {
+                            phone: phoneacc,
+                            goodsId: id
+                        },
+                        dataType: "json",
+                        success: function (res) {
+                            console.log(res);
+                            if (res.status) {
+                                parentTr.remove();
+                                isCheckAll();
+                                getTotal();
+                                location.href = "";
+                            } else {
+                                alert("删除失败");
+                            }
+                        }
+                    })
+
+
+                }
+            }
+        }
+
+
+
+
+
+        // 全选按钮 的 全选功能
+        // 每一个单选框 和 全选框 保持一致
+        checkAll.onclick = function () {
+            var flag = this.checked;  // 全选按钮的状态
+            console.log(flag);
+            for (var i = 0; i < checkOneList.length; i++) {
+                var checkOne = checkOneList[i];//  每一个单选框
+                checkOne.checked = flag;
+            }
+            getTotal();
+        }
+
+
+
+
+        // 循环 给单选框添加事件
+        for (var i = 0; i < checkOneList.length; i++) {
+            var checkOne = checkOneList[i];
+            checkOne.onclick = function () {
+                isCheckAll();
+                getTotal();
+            }
+        }
+
+
+
+
+        function isCheckAll() {
+            var count = 0;
+            // 每次点击单选按钮   重新计算  选中的单选框的数量
+            for (var j = 0; j < checkOneList.length; j++) {
+                var item = checkOneList[j];
+                if (item.checked) {
+                    count++;
+                }
+            }
+            console.log(count, checkOneList.length);
+            if (count == checkOneList.length) {
+                checkAll.checked = true;
+            } else {
+                checkAll.checked = false;
+            }
+        }
+
+
+
+
+
+        function getTotal() {
+            var sum = 0;
+            var allPrice = 0;
+            for (var j = 0; j < checkOneList.length; j++) {
+                var checkOne = checkOneList[j];
+                if (checkOne.checked) {  // 单选框被选中
+
+                    // 找到选中的 单选框的 父代元素  tr  在通过tr 找到countInp(数量的input)  subtotalTd(小计的td)
+                    var parentTr = checkOne.parentElement;
+                    var countInput = parentTr.getElementsByClassName("countinp")[0];
+                    var subtotalTd = parentTr.getElementsByClassName("oneprice")[0];
+                    // console.log(parentTr, countInput, subtotalTd);
+
+                    var num = countInput.value * 1;
+                    var subtotal = subtotalTd.innerText * 1;
+
+                    sum += num;
+                    allPrice += subtotal;
+
+                }
+            }
+            selectedTotal.innerText = sum;
+            priceTotal.innerText = pagePrice.innerText = allPrice.toFixed(2);
+
+            var obj = {
+                sum: sum,
+                allPrice: allPrice.toFixed(2)
+            }
+
+            return obj;
+        }
+
+
+
+
+
+    }
+
+
+
+    function before(ele) {
+        return ele.previousElementSibling || ele.previousSibling;
+    }
+
+    function next(ele) {
+        return ele.nextElementSibling || ele.nextSibling;
+    }
+
+
+
+    function updateCount() {
+        $.ajax({
+            type: "get",
+            url: "../php/searchcar.php",
+            data: {
+                phone: phoneacc
+            },
+            dataType: "json",
+            success: function (res) {
+                console.log(res);
+                var count = 0;
+                res.forEach(item => {
+                    var { goodsCount } = item;
+                    count += parseInt(goodsCount);
+                })
+                console.log(count);
+                $(".countSpan").html(count);
+            }
+        })
+    }
+
+
+
+
+</script>
+
+</html>

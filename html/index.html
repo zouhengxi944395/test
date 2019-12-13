@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <script src="../js/jquery-1.10.1.min.js"></script>
+    <script src="../js/cookie.js"></script>
+</head>
+
+<body>
+    <!-- 导航 -->
+    <div class="header">
+        <div class="logo">
+            <a href="index.html"><img src="../image/logo.png" alt=""></a>
+        </div>
+        <div class="navbar">
+            <div class="search">
+                <input type="text" value="卫衣" id="searchCon">
+                <button id="searchBtn">搜索</button>
+            </div>
+            <div class="list">
+                <span class="loginspan"><a href="login.html">登录</a></span>
+                <span class="regspan"><a href="regist.html">注册</a></span>
+                <a href="shoppingcar.html"><img src="../image/shopcar.png" alt=""></a>
+                <a href="shoppingcar.html"><span class="countSpan"></span></a>
+            </div>
+        </div>
+    </div>
+    <div class="wrapbox"></div>
+
+    <!-- 内容 -->
+    <div class="content">
+        <div class="aside">
+            <div class="asidenav">
+                <div class="topnav">
+                    <p class="list">男士</p>
+                    <div class="hide">
+                        <p><a href="goodslist.html">T恤上衣</a></p>
+                        <p>卫衣</p>
+                        <p>外套</p>
+                        <p>裤装</p>
+                        <p>休闲鞋</p>
+                        <p>运动鞋</p>
+                        <p>包包附配饰</p>
+                        <p>羽绒/棉服</p>
+                    </div>
+                    <p class="list">女士</p>
+                    <div class="hide">
+                        <p>T恤上衣</p>
+                        <p>卫衣</p>
+                        <p>外套</p>
+                        <p>连衣裙</p>
+                        <p>下装</p>
+                        <p>休闲鞋</p>
+                        <p>运动鞋</p>
+                        <p>包包附配饰</p>
+                        <p>羽绒/棉服</p>
+                    </div>
+                    <p class="list">儿童</p>
+                    <div class="hide">
+                        <p>男童-服装</p>
+                        <p>男童-鞋类</p>
+                        <p>男童-包包附配饰</p>
+                        <p>女童-服装</p>
+                        <p>女童-鞋类</p>
+                        <p>女童-包包附配饰</p>
+                    </div>
+                    <p class="line">_______________</p>
+                    <p><a href="#">FUSION</a></p>
+                    <p><a href="#">ATHLETICS</a></p>
+                    <p class="line">_______________</p>
+                    <p id="lastp"><a href="#">积分商城</a></p>
+                </div>
+                <div class="footernav">
+                    <p>会员积分</p>
+                    <div class="hide">
+                        <p><a href="#">积分抵现</a></p>
+                        <p><a href="#">积分说明</a></p>
+                        <p><a href="#">积分商城</a></p>
+                        <p><a href="#">会员制度</a></p>
+                    </div>
+                    <p>购物服务</p>
+                    <div class="hide">
+                        <p><a href="#">购物流程</a></p>
+                        <p><a href="#">支付及发票</a></p>
+                        <p><a href="#">物流配送</a></p>
+                        <p><a href="#">退换货服务</a></p>
+                        <p><a href="#">企业团购</a></p>
+                    </div>
+                    <p>关于FILA</p>
+                    <div class="hide">
+                        <p><a href="#">百年历史</a></p>
+                        <p><a href="#">查找门店</a></p>
+                        <p><a href="#">工作机会</a></p>
+                        <p><a href="#">使用条款</a></p>
+                    </div>
+                    <a href="#">热点新闻</a>
+                </div>
+            </div>
+        </div>
+        <div class="banner">
+            <ul class="swiper">
+                <li><img src="../image/banner5.jpg" alt=""></li>
+                <li><img src="../image/banner6.jpg" alt=""></li>
+                <li><img src="../image/banner7.jpg" alt=""></li>
+                <li><img src="../image/banner.jpg" alt=""></li>
+                <li><img src="../image/banner8.jpg" alt=""></li>
+                <li><img src="../image/banner5.jpg" alt=""></li>
+                <!-- <li><img src="../image/banner6.jpg" alt=""></li> -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <div class="footer">
+        <p>购物服务</p>
+        <p>关于品牌</p>
+        <p>查找门店</p>
+        <p class="media">
+            <span>关注FILA的官方媒体:</span>
+            <a href="#"><span class="pic pic1"></span></a>
+            <a href="#"><span class="pic pic2"></span></a>
+        </p>
+        <p>售后服务电话: 400-886-7699售后服务电话: 400-886-7699</p>
+        <p>©FILA体育 闽ICP备11020421号-8</p>
+    </div>
+
+    <!-- 服务 -->
+    <div class="service">
+        <img src="../image/service.png" alt="">
+        <span>客 服</span>
+    </div>
+</body>
+<script>
+
+    // 查询是否登陆
+    var phone = getCookie("phone");
+    if (phone) {
+        $(".loginspan").html(phone);
+        $(".regspan").html("退出").click(function () {
+            setCookie("phone", "", -1);
+            location.href = "";
+        });
+    }
+
+    var phoneacc = "admin";
+    if (phone) {
+        phoneacc = phone;
+    }
+
+    updateCount();
+
+
+    $("#searchBtn").click(function () {
+        var key = $("#searchCon").val();
+        location.href = `goodslist.html?key=${key}`;
+    })
+
+
+    // 左侧导航点击展开
+    $(".footernav >p").click(function () {
+        var display = $(this).next().css("display");
+        if (display == "block") {
+            $(this).next().css("display", "none");
+        }
+        else if (display == "none") {
+            $(this).siblings(".hide").css("display", "none");
+            $(this).next().css("display", "block");
+        }
+    })
+
+    $(".topnav .list").click(function () {
+        var display = $(this).next().css("display");
+        if (display == "block") {
+            $(this).next().css("display", "none");
+        }
+        else if (display == "none") {
+            $(this).siblings(".hide").css("display", "none");
+            $(this).next().css("display", "block");
+        }
+    })
+
+
+    // 轮播图
+    $(function () {
+
+        var index = 0;
+        var timer = null;
+
+        move();
+
+        function move() {
+            clearInterval(timer);
+            timer = setInterval(function () {
+                index++;
+                console.log(index);
+                var width = $(".swiper li").width();
+                $(".swiper").animate({ left: - width * index }, 500, function () {
+                    if (index >= 4) {
+                        index = 0;
+                        $(".swiper").css({ left: 0 });
+                    }
+                })
+            }, 3000);
+        }
+
+    })
+
+
+    function updateCount() {
+        $.ajax({
+            type: "get",
+            url: "../php/searchcar.php",
+            data: {
+                phone: phoneacc
+            },
+            dataType: "json",
+            success: function (res) {
+                console.log(res);
+                var count = 0;
+                res.forEach(item => {
+                    var { goodsCount } = item;
+                    count += parseInt(goodsCount);
+                })
+                console.log(count);
+                $(".countSpan").html(count);
+            }
+        })
+    }
+
+
+
+</script>
+
+</html>

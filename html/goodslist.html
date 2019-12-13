@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/goodslist.css">
+    <link rel="stylesheet" href="../css/page.css">
+    <script src="../js/jquery-1.10.1.min.js"></script>
+    <script src="../js/page.js"></script>
+    <script src="../js/cookie.js"></script>
+</head>
+
+<body>
+    <!-- 导航 -->
+    <div class="header">
+        <div class="logo">
+            <a href="index.html"><img src="../image/logo.png" alt=""></a>
+        </div>
+        <div class="navbar">
+            <div class="search">
+                <input type="text" value="卫衣" id="searchCon">
+                <button id="searchBtn">搜索</button>
+            </div>
+            <div class="list">
+                <span class="loginspan"><a href="login.html">登录</a></span>
+                <span class="regspan"><a href="regist.html">注册</a></span>
+                <a href="shoppingcar.html"><img src="../image/shopcar.png" alt=""></a>
+                <a href="shoppingcar.html"><span class="countSpan"></span></a>
+            </div>
+        </div>
+    </div>
+    <div class="wrapbox"></div>
+
+    <!-- 内容 -->
+    <div class="content">
+        <div class="aside">
+            <div class="asidenav">
+                <div class="topnav">
+                    <p class="list">男士</p>
+                    <div class="hide">
+                        <p><a href="goodslist.html">T恤上衣</a></p>
+                        <p>卫衣</p>
+                        <p>外套</p>
+                        <p>裤装</p>
+                        <p>休闲鞋</p>
+                        <p>运动鞋</p>
+                        <p>包包附配饰</p>
+                        <p>羽绒/棉服</p>
+                    </div>
+                    <p class="list">女士</p>
+                    <div class="hide">
+                        <p>T恤上衣</p>
+                        <p>卫衣</p>
+                        <p>外套</p>
+                        <p>连衣裙</p>
+                        <p>下装</p>
+                        <p>休闲鞋</p>
+                        <p>运动鞋</p>
+                        <p>包包附配饰</p>
+                        <p>羽绒/棉服</p>
+                    </div>
+                    <p class="list">儿童</p>
+                    <div class="hide">
+                        <p>男童-服装</p>
+                        <p>男童-鞋类</p>
+                        <p>男童-包包附配饰</p>
+                        <p>女童-服装</p>
+                        <p>女童-鞋类</p>
+                        <p>女童-包包附配饰</p>
+                    </div>
+                    <p class="line">_______________</p>
+                    <p><a href="#">FUSION</a></p>
+                    <p><a href="#">ATHLETICS</a></p>
+                    <p class="line">_______________</p>
+                    <p id="lastp"><a href="#">积分商城</a></p>
+                </div>
+                <div class="footernav">
+                    <p>会员积分</p>
+                    <div class="hide">
+                        <p><a href="#">积分抵现</a></p>
+                        <p><a href="#">积分说明</a></p>
+                        <p><a href="#">积分商城</a></p>
+                        <p><a href="#">会员制度</a></p>
+                    </div>
+                    <p>购物服务</p>
+                    <div class="hide">
+                        <p><a href="#">购物流程</a></p>
+                        <p><a href="#">支付及发票</a></p>
+                        <p><a href="#">物流配送</a></p>
+                        <p><a href="#">退换货服务</a></p>
+                        <p><a href="#">企业团购</a></p>
+                    </div>
+                    <p>关于FILA</p>
+                    <div class="hide">
+                        <p><a href="#">百年历史</a></p>
+                        <p><a href="#">查找门店</a></p>
+                        <p><a href="#">工作机会</a></p>
+                        <p><a href="#">使用条款</a></p>
+                    </div>
+                    <a href="#">热点新闻</a>
+                </div>
+            </div>
+        </div>
+        <div class="banner">
+            <div class="goodsnav">
+                <div class="navleft">
+                    <span class="allgoods">全部商品</span>
+                    <span>男士</span>
+                    <span>></span>
+                    <span>T恤上衣</span>
+                </div>
+                <div class="navright">
+                    <span class="searchresult">匹配结果(<span class="rescount">20</span>)</span>
+                    <span class="viewtype">浏览方式</span>
+                    <a class="two">2</a>
+                    <a class="four">4</a>
+                    <select name="" id="orderSel">
+                        <option value="">综合排序</option>
+                        <option name="orderType" value="asc">价格由低到高</option>
+                        <option name="orderType" value="desc">价格由高到低</option>
+                    </select>
+                </div>
+            </div>
+            <ul class="goodslist">
+                <!-- <li>
+                    <p class="new">new</p>
+                    <a href="goodsdetail.html"><img src="../image/goodslist1.jpg" alt=""></a>
+                    <a href="goodsdetail.html">
+                        <p class="goodsname">男士时尚运动长袖T</p>
+                    </a>
+                    <p class="goodsprice">￥<span>576.00</span></p>
+                </li> -->
+            </ul>
+            <div class="box page">
+                <!-- <span class="prev">上一页</span>
+                    <ul class="pageBox">
+                        <li class="active">1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                    </ul>
+                    <span class="next">下一页</span> -->
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <div class="footer">
+        <p>购物服务</p>
+        <p>关于品牌</p>
+        <p>查找门店</p>
+        <p class="media">
+            <span>关注FILA的官方媒体:</span>
+            <a href="#"><span class="pic pic1"></span></a>
+            <a href="#"><span class="pic pic2"></span></a>
+        </p>
+        <p>售后服务电话: 400-886-7699</p>
+        <p>©FILA体育 闽ICP备11020421号-8</p>
+    </div>
+
+    <!-- 服务 -->
+    <div class="service">
+        <img src="../image/service.png" alt="">
+        <span>客 服</span>
+    </div>
+</body>
+<script>
+
+    // 查询是否登陆
+    var phone = getCookie("phone");
+    if (phone) {
+        $(".loginspan").html(phone);
+        $(".regspan").html("退出").click(function () {
+            setCookie("phone", "", -1);
+            location.href = "";
+        });
+    }
+
+    var phoneacc = "admin";
+    if (phone) {
+        phoneacc = phone;
+    }
+
+    updateCount();
+
+
+
+    $(".footernav >p").click(function () {
+        var display = $(this).next().css("display");
+        if (display == "block") {
+            $(this).next().css("display", "none");
+        }
+        else if (display == "none") {
+            $(this).siblings(".hide").css("display", "none");
+            $(this).next().css("display", "block");
+        }
+    });
+
+    $(".topnav .list").click(function () {
+        var display = $(this).next().css("display");
+        if (display == "block") {
+            $(this).next().css("display", "none");
+        }
+        else if (display == "none") {
+            $(this).siblings(".hide").css("display", "none");
+            $(this).next().css("display", "block");
+        }
+    });
+
+
+
+
+
+    $(".two").click(function () {
+        $(this).css("color", "#03224b");
+        $(this).siblings("a").css("color", "#666");
+        $(".goodslist li").css({
+            "width": "42.5%",
+            "margin-left": "5%"
+        });
+    });
+    $(".four").click(function () {
+        $(this).css("color", "#03224b");
+        $(this).siblings("a").css("color", "#666");
+        $(".goodslist li").css({
+            "width": "25%",
+            "margin": 0
+        });
+    });
+
+
+
+
+    var key = "";
+    if (location.search) {
+        key = decodeURIComponent(location.search.split("=")[1]);
+    }
+    var orderCol = "id";
+    var orderType = "asc"
+    var showNum = 8;
+    var pageIndex = 0;
+
+    showPage(key, orderCol, orderType, pageIndex, showNum);
+
+    function showPage(key, orderCol, orderType, pageIndex, showNum) {
+        $.ajax({
+            type: "get",
+            url: "../php/goodslist.php",
+            data: {
+                key: key,
+                orderCol: orderCol,
+                orderType: orderType
+            },
+            dataType: "json",
+            success: function (result) {
+                console.log(result);
+                $(".rescount").html(result.count);
+
+                new Page(".box", {
+                    count: result.count,
+                    showNum: showNum,
+                    showPage: 5,
+                    callback(index) {
+                        $.ajax({
+                            type: "get",
+                            url: "../php/create.php",
+                            data: {
+                                key: key,
+                                orderCol: orderCol,
+                                orderType: orderType,
+                                pageIndex: index,
+                                showNum: showNum
+                            },
+                            dataType: "json",
+                            success: function (result) {
+                                console.log(result);
+                                createHTML(result);
+                            }
+                        })
+                        console.log(index);
+                    }
+                })
+            }
+        })
+    };
+
+
+
+
+    var searchCon = document.getElementById("searchCon");
+    var searchBtn = document.getElementById("searchBtn");
+
+    searchBtn.onclick = function () {
+        key = searchCon.value;
+        console.log(key);
+        showPage(key, orderCol, orderType, pageIndex, showNum);
+    }
+
+
+
+    var orderSel = document.querySelector("#orderSel");
+
+    orderSel.onchange = function () {
+        var ele = orderSel.options[orderSel.selectedIndex];
+        if (ele.value == "asc" || ele.value == "desc") {
+            orderCol = "goodsPrice";
+            orderType = ele.value;
+        }
+        else {
+            orderCol = "id";
+            orderType = "asc";
+        }
+        showPage(key, orderCol, orderType, pageIndex, showNum);
+    }
+
+
+
+
+
+    var goodslist = document.getElementsByClassName("goodslist")[0];
+
+    function createHTML(arr) {
+        if (!Array.isArray(arr)) {
+            var err = new Error("Pass in an array,please");
+            throw err;
+        }
+
+        var html = "";
+
+        if (arr.length > 0) {
+            arr.forEach(item => {
+                var { id, goodsName, goodsPrice, goodsImg } = item;
+                html += `<li>
+                    <p class="new">new</p>
+                    <a href="goodsdetail.html?id=${id}"><img src="../image/${goodsImg}" alt=""></a>
+                    <a href="goodsdetail.html?id=${id}">
+                        <p class="goodsname">${goodsName}</p>
+                    </a>
+                    <p class="goodsprice">￥<span>${goodsPrice}</span></p>
+                </li>`;
+            })
+            goodslist.innerHTML = html;
+        }
+        else {
+            goodslist.innerHTML = `<span class="noSpan">暂无数据</span>`;
+        }
+    };
+
+
+
+
+    function updateCount() {
+        $.ajax({
+            type: "get",
+            url: "../php/searchcar.php",
+            data: {
+                phone: phoneacc
+            },
+            dataType: "json",
+            success: function (res) {
+                console.log(res);
+                var count = 0;
+                res.forEach(item => {
+                    var { goodsCount } = item;
+                    count += parseInt(goodsCount);
+                })
+                console.log(count);
+                $(".countSpan").html(count);
+            }
+        })
+    }
+
+
+
+
+</script>
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/regist.css">
+    <script src="../js/jquery-1.10.1.min.js"></script>
+</head>
+
+<body>
+    <!-- 内容 -->
+    <div class="content">
+        <div class="headercon">
+            <span>欢迎加入</span>
+            <a href="index.html"><img src="../image/logo.png" alt=""></a>
+        </div>
+        <div class="inputcon">
+            <input type="text" placeholder=" 手机号" class="phone">
+            <div class="password">
+                <input type="password" placeholder=" 密码" class="pwd">
+            </div>
+            <button id="btn">确认</button>
+        </div>
+        <div class="login">
+            <a href="login.html">已有账号？立即登录</a>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <div class="footer">
+        <p>购物服务</p>
+        <p>关于品牌</p>
+        <p>查找门店</p>
+        <p class="media">
+            <span>关注FILA的官方媒体:</span>
+            <a href="#"><span class="pic pic1"></span></a>
+            <a href="#"><span class="pic pic2"></span></a>
+        </p>
+        <p>售后服务电话: 400-886-7699</p>
+        <p>©FILA体育 闽ICP备11020421号-8</p>
+    </div>
+
+    <!-- 服务 -->
+    <div class="service">
+        <img src="../image/service.png" alt="">
+        <span>客 服</span>
+    </div>
+</body>
+<script>
+
+    var phoneInp = document.querySelector(".phone");
+    var pwdInp = document.querySelector(".pwd");
+    var btn = document.querySelector("#btn");
+
+
+    btn.onclick = function () {
+        var phone = phoneInp.value;
+        var pwd = pwdInp.value;
+        phonejudge();
+
+        if (phoneInp.flag && pwdInp.flag) {
+            $.ajax({
+                type: "post",
+                url: "../php/regist.php",
+                data: {
+                    phone: phone,
+                    password: pwd
+                },
+                dataType: "json",
+                success: function (result) {
+                    console.log(result);
+                    if (result.status == 0) {
+                        alert("该手机号已被注册!");
+                    }
+                    else if (result.status == 2) {
+                        alert("注册失败!");
+                    }
+                    else if (result.status == 1) {
+                        if (confirm("注册成功!是否立即登陆?")) {
+                            location.href = "login.html";
+                        }
+                    }
+                }
+            })
+        }
+
+    }
+
+
+    function phonejudge() {
+        var phone = phoneInp.value;
+        phoneInp.flag = false;
+        if (phone) {
+            var reg = /^1\d{10}$/;
+            if (reg.test(phone)) {
+                phoneInp.flag = true;
+                pwdjudge();
+            } else {
+                alert("请输入正确的手机号!");
+            }
+        } else {
+            alert("手机号不能为空!");
+        }
+    }
+
+    function pwdjudge() {
+        var pwd = pwdInp.value;
+        pwdInp.flag = false;
+        if (pwd) {
+            var reg = /^\w{6,20}$/;
+            if (reg.test(pwd)) {
+                pwdInp.flag = true;
+            } else {
+                alert("用户名为6-20位,由字母数字下划线组成");
+            }
+        } else {
+            alert("密码不能为空!");
+        }
+    }
+
+
+
+</script>
+
+</html>

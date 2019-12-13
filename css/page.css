@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+.page {
+    line-height: 36px;
+    text-align: center;
+    overflow: hidden;
+    color: #03224b;
+    padding: 5px;
+    user-select: none;
+}
+
+.page .prev,
+.page .pageBox,
+.page .next {
+    float: left;
+}
+
+.page .prev,
+.page .next {
+    width: 88px;
+    border: 1px solid #e1e2e3;
+    cursor: pointer;
+}
+.page .prev:hover,
+.page .next:hover {
+    background: #ddd;
+}
+
+.page .pageBox li {
+    width: 36px;
+    border: 1px solid #e1e2e3;
+    float: left;
+    margin: 0 5px;
+    cursor: pointer;
+}
+.page .pageBox li:hover{
+    background: #ddd;
+}
+
+.page .pageBox .active {
+    color: black;
+    border-color: transparent;
+    background: none;
+}

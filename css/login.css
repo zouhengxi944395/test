@@ -1,0 +1,395 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-size: 14px;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+
+/******************** header ********************/
+.header{
+    width: 100%;
+    height: 100px;
+    /* background: red; */
+    overflow: hidden;
+    position: fixed;
+    left: 0;
+    top: 0;
+    visibility: hidden;
+}
+
+.header .logo{
+    width: 15%;
+    height: 100px;
+    text-align: center;
+    float: left;
+    background: #fff;
+}
+.header .logo img{
+    width: 100px;
+    height: 33px;
+    margin-top: 35px;
+}
+
+.header .navbar{
+    float: right;
+    margin-right: 50px;
+    margin-top: 30px;;
+    /* background: yellow; */
+}
+.header .navbar .search{
+    height: 30px;
+    line-height: 30px;
+    float: left;
+}
+.header .navbar .search input{
+    width: 200px;
+    height: 20px;
+    outline: none;
+    background: rgba(0, 0, 0, 0);
+    border: none;
+    border-bottom: 1px solid #000;
+}
+.header .navbar .search button{
+    height: 20px;
+    font-size: 16px;
+    font-weight: bolder;
+    outline: none;
+    border: none;
+    background: rgba(0, 0, 0, 0);
+    cursor: pointer;
+}
+.header .navbar .list{
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 40px;
+}
+.header .navbar .list span{
+    margin-right: 15px;
+    cursor: pointer;
+}
+.header .navbar .list img{
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+.wrapbox{
+    height: 100px;
+}
+
+
+/******************** content ********************/
+.content{
+    width: 1200px;
+    /* height: 50px; */
+    /* background: red; */
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 60px 0px;
+    margin-bottom: 90px;
+}
+.content .leftcon{
+    float: left;
+    width: 50%;
+    /* background: blue; */
+    border-right: 1px solid #02224b;
+    box-sizing: border-box;
+}
+.content .leftcon .logincon{
+    width: 385px;
+    float: right;
+    margin-right: 50px;
+}
+.content .leftcon .logincon .headercon{
+    height: 26px;
+    line-height: 26px;
+    /* background: skyblue; */
+    /* text-align: center; */
+    overflow: hidden;
+    /* line-height: 30px; */
+}
+.content .leftcon .logincon .headercon span{
+    float: left;
+    display: block;
+    font-size: 20px;
+    margin-left: 100px;
+    margin-right: 10px;
+}
+.content .leftcon .logincon .headercon img{
+    width: 78px;
+    height: 26px;
+    float: left;
+    /* vertical-align: middle; */
+}
+.content .leftcon .logincon .logintype{
+    height: 60px;
+    font-weight: bolder;
+    cursor: pointer;
+    /* background: red; */
+}
+.content .leftcon .logincon .logintype .left{
+    width: 50%;
+    height: 35px;
+    float: left;
+    font-size: 20px;
+    text-align: center;
+    color: #03234c;
+    border-bottom: 2px solid #03234c;
+    margin-top: 20px;
+}
+.content .leftcon .logincon .logintype .right{
+    width: 50%;
+    height: 35px;
+    float: left;
+    font-size: 20px;
+    text-align: center;
+    color: #c8cbcc;
+    border-bottom: 2px solid #c8cbcc;
+    margin-top: 20px;
+}
+.content .leftcon .logincon .logininp{
+    overflow: hidden;
+}
+.content .leftcon .logincon .logininp input{
+    width: 100%;
+    height: 40px;
+    outline: none;
+    border: 1px solid #9a9aa9;
+    margin-top: 20px;
+    text-indent: 10px;
+    color: #555;
+    box-sizing: border-box;
+}
+.content .leftcon .logincon .logininp button{
+    width: 100%;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    background: #03234c;
+    margin-top: 50px;
+    cursor: pointer;
+}
+.content .leftcon .logincon .logininp1{
+    display: none;
+    overflow: hidden;
+}
+.content .leftcon .logincon .logininp1 input{
+    margin-top: 20px;
+    width: 100%;
+    height: 40px;
+    box-sizing: border-box;
+    outline: none;
+    text-indent: 10px;
+    border: 1px solid #9a9aa9;
+}
+.content .leftcon .logincon .logininp1 .pictest{
+    width: 100%;
+}
+.content .leftcon .logincon .logininp1 .pictest input{
+    width: 70%;
+    float: left;
+}
+.content .leftcon .logincon .logininp1 .pictest span{
+    width: 30%;
+    height: 40px;
+    float: right;
+    margin-top: 20px;
+    background: #03234c;
+}
+.content .leftcon .logincon .logininp1 .msgtest{
+    width: 100%;
+}
+.content .leftcon .logincon .logininp1 .msgtest input{
+    width: 75%;
+    float: left;
+}
+.content .leftcon .logincon .logininp1 .msgtest button{
+    width: 25%;
+    height: 40px;
+    color: #fff;
+    margin-top: 20px;
+    outline: none;
+    border: none;
+    float: right;
+    background: #03234c;
+}
+.content .leftcon .logincon .logininp1>button{
+    width: 100%;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    margin-top: 20px;
+    cursor: pointer;
+    background: #03234c;
+}
+.content .leftcon .logincon .loginoth{
+    overflow: hidden;
+    margin-top: 40px;
+}
+.content .leftcon .logincon .loginoth .left{
+    width: 140px;
+    border-top: 1px solid #9a9a9a;
+    float: left;
+    margin-top: 8px;
+}
+.content .leftcon .logincon .loginoth span{
+    color: #9a9a9a;
+    font-size: 12px;
+    float: left;
+    margin-left: 10px;
+}
+.content .leftcon .logincon .loginoth .right{
+    width: 140px;
+    border-top: 1px solid #9a9a9a;
+    float: right;
+    margin-top: 8px;
+}
+.content .leftcon .logincon .loginqq{
+    margin-top: 30px;
+}
+.content .leftcon .logincon .loginqq .pic{
+    width: 36px;
+    height: 36px;
+    display: block;
+    margin-left: 40px;
+    background: url(../image/qq.png);
+}
+.content .leftcon .logincon .loginqq .pic:hover{
+    background: url(../image/qq1.png);
+}
+.content .leftcon .logincon .loginforget{
+    text-align: center;
+    margin-top: 10px;
+}
+.content .leftcon .logincon .loginforget a{
+    color: #03234c;
+}
+
+.content .rightcon{
+    float: left;
+    width: 50%;
+    /* padding: 60px 0px; */
+    /* background: yellow; */
+}
+.content .rightcon .vip{
+    width: 385px;
+    margin-left: 60px;
+}
+.content .rightcon .vip .vipheader{
+    font-size: 20px;
+    color: #02224b;
+    font-weight: bold;
+    margin-bottom: 25px;
+    margin-left: 120px;
+}
+.content .rightcon .vip .vipregist{
+    color: #999;
+    margin-bottom: 10px;
+}
+.content .rightcon .vip .vipcon li{
+    padding: 10px 0;
+    list-style: square;
+    color: #02224b;
+}
+.content .rightcon .vip a{
+    display: block;
+    text-align: center;
+    width: 100%;
+    background-color: #03234c;
+    color: #fff;
+    border: none;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    margin-top: 17px;
+}
+
+
+/******************** footer ********************/
+.footer{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 13px;
+    color: #fff;
+    padding: 0 40px;
+    box-sizing: border-box;
+    background: #03234c;
+}
+.footer p{
+    float: left;
+    margin-left: 20px;
+}
+.footer .media{
+    margin-left: 30px;
+}
+.footer span{
+    float: left;
+}
+.footer .pic{
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+}
+.footer .pic1{
+    margin-left: 8px;
+    margin-right: 15px;
+    background-image: url(../image/icon1.png);
+    background-size: 30px 30px;
+}
+.footer .pic1:hover{
+    background: url(../image/icon2.png);
+    background-size: 30px 30px;
+}
+.footer .pic2{
+    margin-right: 8px;
+    background: url(../image/icon3.png);
+    background-size: 30px 30px;
+}
+.footer .pic2:hover{
+    background: url(../image/icon4.png) center center;
+    background-size: 30px 32.3px;
+}
+.footer .pic2:hover{
+    background-position: 0px -130px;
+}
+.footer p:last-child{
+    float: right;
+    color: #888;
+}
+
+
+/******************** service ********************/
+.service{
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    background: #fff;
+    border: 1px solid #000;
+    border-right: 0;
+    position: fixed;
+    right: 0;
+    bottom: 100px;
+    text-align: center;
+    cursor: pointer;
+}
+.service img{
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 5px;
+}

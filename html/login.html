@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <script src="../js/jquery-1.10.1.min.js"></script>
+    <script src="../js/cookie.js"></script>
+</head>
+
+<body>
+    <!-- 导航 -->
+    <div class="header">
+        <div class="logo">
+            <img src="../image/logo.png" alt="">
+        </div>
+        <div class="navbar">
+            <div class="search">
+                <input type="text" value=" 卫衣">
+                <button>搜索</button>
+            </div>
+            <div class="list">
+                <span>登录</span>
+                <span>注册</span>
+                <img src="../image/shopcar.png" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="wrapbox"></div>
+
+    <!-- 内容 -->
+    <div class="content">
+        <div class="leftcon">
+            <div class="logincon">
+                <div class="headercon">
+                    <span>欢迎登录</span>
+                    <a href="index.html"><img src="../image/logo.png" alt=""></a>
+                </div>
+                <div class="logintype">
+                    <div class="left">账号密码登录</div>
+                    <div class="right">短信快捷登录/注册</div>
+                </div>
+                <div class="logininp">
+                    <input type="text" placeholder=" 手机号" class="phone">
+                    <input type="password" placeholder=" 密码" class="pwd">
+                    <button id="btn">立即登录</button>
+                </div>
+                <div class="logininp1">
+                    <input type="text" placeholder=" 手机号">
+                    <div class="pictest">
+                        <input type="text" placeholder=" 圆形验证码">
+                        <span></span>
+                    </div>
+                    <div class="msgtest">
+                        <input type="text" placeholder=" 短信验证码">
+                        <button>获取验证码</button>
+                    </div>
+                    <button>立即登录</button>
+                </div>
+                <div class="loginoth">
+                    <div class="left"></div>
+                    <span>第三方信任登录</span>
+                    <div class="right"></div>
+                </div>
+                <div class="loginqq">
+                    <a href="#"><span class="pic"></span></a>
+                </div>
+                <div class="loginforget">
+                    <a href="#">忘记密码?</a>
+                </div>
+            </div>
+        </div>
+        <div class="rightcon">
+            <div class="vip">
+                <p class="vipheader">加入FILA V.I.P.</p>
+                <p class="vipregist">注册成为会员并完善个人信息，即可享受 ：</p>
+                <ul class="vipcon">
+                    <li>注册即送50元现金券；</li>
+                    <li>积分可在官网购物时作为现金抵扣；</li>
+                    <li>官网、门店消费共享会员权益和积分累计；</li>
+                    <li>即时收到优惠及新品发布信息，品牌活动邀约</li>
+                </ul>
+                <a href="regist.html">立即注册</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <div class="footer">
+        <p>购物服务</p>
+        <p>关于品牌</p>
+        <p>查找门店</p>
+        <p class="media">
+            <span>关注FILA的官方媒体:</span>
+            <a href="#"><span class="pic pic1"></span></a>
+            <a href="#"><span class="pic pic2"></span></a>
+        </p>
+        <p>售后服务电话: 400-886-7699</p>
+        <p>©FILA体育 闽ICP备11020421号-8</p>
+    </div>
+
+    <!-- 服务 -->
+    <div class="service">
+        <img src="../image/service.png" alt="">
+        <span>客 服</span>
+    </div>
+</body>
+<script>
+
+    // 查询是否登陆
+    var phoneCookie = getCookie("phone");
+    console.log(phoneCookie);
+
+
+    // 登陆方式切换
+    $(".logintype .right").click(function () {
+        $(".logininp1").css("display", "block");
+        $(".logininp").css("display", "none");
+        $(this).css({
+            "color": "#02224b",
+            "border-bottom-color": "#02224b"
+        })
+        $(this).prev().css({
+            "color": "#c8cbcc",
+            "border-bottom-color": "#c8cbcc"
+        })
+        $(".loginforget").css("display", "none");
+    })
+
+    $(".logintype .left").click(function () {
+        $(".logininp1").css("display", "none");
+        $(".logininp").css("display", "block");
+        $(this).css({
+            "color": "#02224b",
+            "border-bottom-color": "#02224b"
+        })
+        $(this).next().css({
+            "color": "#c8cbcc",
+            "border-bottom-color": "#c8cbcc"
+        })
+        $(".loginforget").css("display", "block");
+    })
+
+
+
+    // 判断手机号密码格式
+    var phoneInp = document.querySelector(".phone");
+    var pwdInp = document.querySelector(".pwd");
+    var btn = document.querySelector("#btn");
+
+    var goodId, goodSize, goodCount;
+
+
+    btn.onclick = function () {
+        var phone = phoneInp.value;
+        var pwd = pwdInp.value;
+        phonejudge();
+
+
+        if (phoneInp.flag && pwdInp.flag) {
+            if (phoneCookie) {
+                alert("请先退出当前账户!");
+            }
+            else {
+                $.ajax({
+                    type: "post",
+                    url: "../php/login.php",
+                    data: {
+                        phone: phone,
+                        password: pwd
+                    },
+                    dataType: "json",
+                    success: function (result) {
+                        console.log(result);
+                        if (result.status) {
+                            setCookie("phone", result.phone, 7);
+
+                            $.ajax({
+                                type: "get",
+                                url: "../php/adminsearch.php",
+                                dataType: "json",
+                                success: function (result) {
+                                    console.log(result);
+                                    result.forEach(item => {
+                                        var { goodsId, goodsSize, goodsCount } = item;
+                                        goodId = goodsId;
+                                        goodSize = goodsSize;
+                                        goodCount = goodsCount;
+                                        $.ajax({
+                                            type: "get",
+                                            url: "../php/phonesearch.php",
+                                            data: {
+                                                goodsId: goodId,
+                                                goodsSize: goodSize,
+                                                phone: phone
+                                            },
+                                            dataType: "json",
+                                            success: function (result) {
+                                                console.log(result);
+                                                var id = rusult.id;
+                                                if (result.id) {
+                                                    $.ajax({
+                                                        type: "get",
+                                                        url: "../php/countupdate.php",
+                                                        data: {
+                                                            id: id,
+                                                            goodsCount: goodCount
+                                                        },
+                                                        dataType: "json",
+                                                        success: function (result) {
+                                                            console.log(result);
+                                                            if (result.status) {
+
+                                                                $.ajax({
+                                                                    type: "get",
+                                                                    url: "../php/deladmin.php",
+                                                                    data: {
+                                                                        goodsId:goodId,
+                                                                        goodsSize:goodSize,
+                                                                        goodsCount:goodCount
+                                                                    },
+                                                                    dataType: "json",
+                                                                    success: function (result) {
+                                                                        console.log(result);
+                                                                    }
+                                                                })
+                                                            }
+                                                        }
+                                                    }) // 更新
+                                                }
+                                                else {
+                                                    $.ajax({
+                                                        type: "get",
+                                                        url: "../php/phoneupdate.php",
+                                                        data: {
+                                                            phone: phone,
+                                                        },
+                                                        dataType: "json",
+                                                        success: function (result) {
+                                                            console.log(result);
+                                                        }
+                                                    }) // 新增
+                                                }
+                                            }
+                                        })
+                                    })
+                                }
+                            })
+
+                            var backUrl = getCookie("backUrl");
+                            if (backUrl) {
+                                setCookie("backUrl", "", -1);
+                                location.href = decodeURIComponent(backUrl);
+                            }
+                            else {
+                                location.href = "index.html";
+                            }
+                        }
+                        else {
+                            alert("手机号或密码错误!");
+                        }
+                    }
+                })
+            }
+        }
+
+
+
+    }
+
+    function phonejudge() {
+        var phone = phoneInp.value;
+        phoneInp.flag = false;
+        if (phone) {
+            var reg = /^1\d{10}$/;
+            if (reg.test(phone)) {
+                phoneInp.flag = true;
+                pwdjudge();
+            } else {
+                alert("请输入正确的手机号!");
+            }
+        } else {
+            alert("手机号不能为空!");
+        }
+    }
+
+    function pwdjudge() {
+        var pwd = pwdInp.value;
+        pwdInp.flag = false;
+        if (pwd) {
+            var reg = /^\w{6,20}$/;
+            if (reg.test(pwd)) {
+                pwdInp.flag = true;
+            } else {
+                alert("用户名为6-20位,由字母数字下划线组成");
+            }
+        } else {
+            alert("密码不能为空!");
+        }
+    }
+
+
+
+</script>
+
+</html>

@@ -1,0 +1,155 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-size: 14px;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+
+/******************** content ********************/
+.content{
+    margin-top: 50px;
+    padding-top: 100px;
+    min-height: calc(100vh - 50px);
+    /* background: red; */
+    box-sizing: border-box;
+}
+.content .headercon{
+    width: 170px;
+    margin:10px auto;
+    overflow: hidden;
+}
+.content .headercon span{
+    font-size: 20px;
+    float: left;
+    margin-right: 10px;
+}
+.content .headercon img{
+    width: 78px;
+    height: 26px;
+}
+.content .inputcon{
+    width: 330px;
+    margin: 20px auto;
+}
+.content .inputcon input{
+    width: 100%;
+    height: 40px;
+    outline: none;
+    border: 1px solid #e8e8e8;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    text-indent: 10px;
+}
+.content .inputcon .password{
+    width: 100%;
+    height: 40px;
+}
+.content .inputcon .password input{
+    width: 100%;
+    display: block;
+    float: left;
+}
+.content .inputcon button{
+    width: 100%;
+    height: 40px;
+    color: #fff;
+    background-color: #03234c;
+    border: none;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+}
+.content .login{
+    text-align: center;
+    margin-top: 25px;
+}
+.content .login a{
+    color: #666;
+}
+
+
+
+/******************** footer ********************/
+.footer{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 13px;
+    color: #fff;
+    padding: 0 40px;
+    box-sizing: border-box;
+    background: #03234c;
+}
+.footer p{
+    float: left;
+    margin-left: 20px;
+}
+.footer .media{
+    margin-left: 30px;
+}
+.footer span{
+    float: left;
+}
+.footer .pic{
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+}
+.footer .pic1{
+    margin-left: 8px;
+    margin-right: 15px;
+    background-image: url(../image/icon1.png);
+    background-size: 30px 30px;
+}
+.footer .pic1:hover{
+    background: url(../image/icon2.png);
+    background-size: 30px 30px;
+}
+.footer .pic2{
+    margin-right: 8px;
+    background: url(../image/icon3.png);
+    background-size: 30px 30px;
+}
+.footer .pic2:hover{
+    background: url(../image/icon4.png) center center;
+    background-size: 30px 32.3px;
+}
+.footer .pic2:hover{
+    background-position: 0px -130px;
+}
+.footer p:last-child{
+    float: right;
+    color: #888;
+}
+
+
+
+/******************** service ********************/
+.service{
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    background: #fff;
+    border: 1px solid #000;
+    border-right: 0;
+    position: fixed;
+    right: 0;
+    bottom: 100px;
+    text-align: center;
+    cursor: pointer;
+}
+.service img{
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 5px;
+}

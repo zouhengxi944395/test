@@ -1,0 +1,362 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-size: 14px;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+/******************** header ********************/
+.header{
+    width: 100%;
+    height: 100px;
+    background: #fff;
+    overflow: hidden;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.header .logo{
+    width: 15%;
+    height: 100px;
+    text-align: center;
+    float: left;
+    background: #fff;
+}
+.header .logo img{
+    width: 100px;
+    height: 33px;
+    margin-top: 35px;
+}
+
+.header .navbar{
+    float: right;
+    margin-right: 70px;
+    margin-top: 30px;;
+    /* background: yellow; */
+}
+.header .navbar .search{
+    height: 30px;
+    line-height: 30px;
+    float: left;
+}
+.header .navbar .search input{
+    width: 200px;
+    height: 20px;
+    outline: none;
+    background: rgba(0, 0, 0, 0);
+    border: none;
+    border-bottom: 1px solid #000;
+}
+.header .navbar .search button{
+    height: 20px;
+    font-size: 16px;
+    font-weight: bolder;
+    outline: none;
+    border: none;
+    background: rgba(0, 0, 0, 0);
+    cursor: pointer;
+}
+.header .navbar .list{
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 40px;
+}
+.header .navbar .list span{
+    margin-right: 15px;
+    cursor: pointer;
+}
+.header .navbar .list img{
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+.wrapbox{
+    height: 100px;
+    margin-bottom: 50px;
+}
+
+
+/******************** content ********************/
+
+.content{
+    color: #03234c;
+    overflow: hidden;
+    margin-bottom: 50px;
+    >p{
+        height: 50px;
+        line-height: 50px;
+        font-size: 16px;
+        text-align: center;
+        background: #f5f5f5;
+    }
+    .shopcar{
+        width: 1200px;
+        margin: 0 auto;
+        overflow: hidden;
+        .shopheader{
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            font-size: 16px;
+            border-bottom: 1px solid #ddd;
+            margin-top: 20px;
+            >p{
+                float: left;
+                box-sizing: border-box;
+                text-align: center;
+            }
+            .msg{
+                width: 500px;
+                margin-left: 80px;
+                padding-right: 15px;
+                text-align: left;
+            }
+            .price{
+                width: 100px;
+            }
+            .count{
+                width: 200px;
+                padding-left: 60px;
+                padding-right: 15px;
+            }
+            .total{
+                width: 100px;
+            }
+            .play{
+                width: 200px;
+                padding-left: 15px;
+            }
+        }
+        .check{
+            width: 100%;
+            height: 60px;
+            line-height: 60px;
+            input{
+                width: 16px;
+                height: 16px;
+                margin-left: 25px;
+                margin-right: 35px;
+            }
+        }
+
+        .shopcarlist{
+            border-bottom: 1px solid #d9d9d9;
+            .noSpan{
+                display: block;
+                text-align: center;
+                margin-bottom: 65px;
+            }
+            .carlist{
+                width: 100%;
+                height: 140px;
+                margin-bottom: 10px;
+                // background: pink;
+                >input{
+                    width: 16px;
+                    height: 16px;
+                    float: left;
+                    margin-left: 25px;
+                    margin-right: 35px;
+                    margin-top: 60px;
+                }
+                .imginfo{
+                    width: 500px;
+                    float: left;
+                    overflow: hidden;
+                    img{
+                        width: 120px;
+                        height: 120px;
+                        float: left;
+                        margin-top: 10px;
+                    }
+                    p{
+                        float: left;
+                        margin-left: 20px;
+                        margin-top: 20px;
+                    }
+                }
+                .priceinfo{
+                    width: 100px;
+                    float: left;
+                    text-align: center;
+                    line-height: 140px;
+                }
+                .countinfo{
+                    width: 200px;
+                    padding-left: 55px;
+                    padding-right: 15px;
+                    float: left;
+                    box-sizing: border-box;
+                    margin-top: 55px;
+                    input{
+                        text-align: center;
+                        display: block;
+                        width: 54px;
+                        height: 30px;
+                        float: left;
+                        outline: none;
+                        background: #dbdbdb;
+                        border: 1px solid #03234c;
+                        box-sizing: border-box;
+                    }
+                    button{
+                        display: block;
+                        width: 36px;
+                        height: 30px;
+                        line-height: 30px;
+                        float: left;
+                        font-size: 28px;
+                        outline: none;
+                        background: #fff;
+                        cursor: pointer;
+                        border: 1px solid #03234c;
+                    }
+                    .leftbtn{
+                        font-size: 40px;
+                        line-height: 10px;
+                    }
+                }
+                .totalinfo{
+                    width: 100px;
+                    float: left;
+                    text-align: center;
+                    line-height: 140px;
+                    .oneprice{
+                        font-weight: bold;
+                    }
+                }
+                .delinfo{
+                    width: 200px;
+                    line-height: 140px;
+                    float: left;
+                    text-align: center;
+                    padding-left: 10px;
+                    .delspan{
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+        .account{
+            width: 100%;
+            overflow: hidden;
+            border-bottom: 1px solid #d9d9d9;
+            p{
+                text-align: right;
+                margin-top: 15px;
+                font-size: 16px;
+            }
+            .pagetotal{
+                font-size: 18px;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+        }
+
+        .actfooter{
+            width: 100%;
+            overflow: hidden;
+            .actbtn{
+                width: 190px;
+                height: 40px;
+                font-size: 18px;
+                color: #fff;
+                float: right;
+                border: none;
+                outline: none;
+                margin-top: 15px;
+                background: #03234c;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+
+
+
+/******************** footer ********************/
+.footer{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 13px;
+    color: #fff;
+    padding: 0 40px;
+    box-sizing: border-box;
+    background: #03234c;
+}
+.footer p{
+    float: left;
+    margin-left: 20px;
+}
+.footer .media{
+    margin-left: 30px;
+}
+.footer span{
+    float: left;
+}
+.footer .pic{
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+}
+.footer .pic1{
+    margin-left: 8px;
+    margin-right: 15px;
+    background-image: url(../image/icon1.png);
+    background-size: 30px 30px;
+}
+.footer .pic1:hover{
+    background: url(../image/icon2.png);
+    background-size: 30px 30px;
+}
+.footer .pic2{
+    margin-right: 8px;
+    background: url(../image/icon3.png);
+    background-size: 30px 30px;
+}
+.footer .pic2:hover{
+    background: url(../image/icon4.png) center center;
+    background-size: 30px 32.3px;
+}
+.footer .pic2:hover{
+    background-position: 0px -130px;
+}
+.footer p:last-child{
+    float: right;
+    color: #888;
+}
+
+
+/******************** service ********************/
+.service{
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    background: #fff;
+    border: 1px solid #000;
+    border-right: 0;
+    position: fixed;
+    right: 0;
+    bottom: 100px;
+    text-align: center;
+    cursor: pointer;
+}
+.service img{
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
