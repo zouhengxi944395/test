@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #LoutiNav {
+
+            position: fixed;
+            top: 25%;
+            left: 40px;
+            width: 30px;
+            border: 1px solid;
+        }
+
+        #LoutiNav ul li {
+            position: relative;
+            width: 30px;
+            height: 30px;
+            list-style: none;
+            text-align: center;
+            line-height: 30px;
+            font-size: 12px;
+            cursor: pointer;
+            border-bottom: 1px dotted #AAAAAA;
+        }
+
+        #LoutiNav ul li.last {
+            background: darkred;
+            color: white;
+            border-bottom: none;
+        }
+
+        #LoutiNav ul li span {
+            display: none;
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: red;
+        }
+
+        #LoutiNav ul li:hover span {
+            display: block;
+            background: darkred;
+            color: white;
+        }
+
+        #LoutiNav ul li span.active {
+            display: block;
+            background: white;
+            color: red;
+        }
+
+        #LoutiNav ul li:hover span.active {
+            display: block;
+            background: darkred;
+            color: white;
+        }
+
+        #header,
+        #main,
+        #footer {
+            margin: auto;
+            width: 1000px;
+            text-align: center;
+            font-size: 40px;
+            font-weight: bold;
+            line-height: 500px;
+        }
+
+        #main div {
+            height: 700px;
+            font-size: 50px;
+            color: honeydew;
+            line-height: 700px;
+        }
+
+        #header {
+            height: 500px;
+            background: darkcyan;
+        }
+
+        #footer {
+            height: 500px;
+            background: darkcyan;
+        }
+    </style>
+</head>
+<body>
+    <!--左侧设置楼梯-->
+    <div id="LoutiNav">
+        <ul>
+            <!--设置每一层楼梯路面的内容-->
+            <li>1F <span>服饰</span> </li>
+            <li>2F <span>美妆</span> </li>
+            <li>3F <span>手机</span> </li>
+            <li>4F <span>家电</span> </li>
+            <li>5F <span>数码</span> </li>
+            <li>6F <span>运动</span> </li>
+            <li>7F <span>居家</span> </li>
+            <li>8F <span>母婴</span> </li>
+            <li>9F <span>食品</span> </li>
+            <li>10F <span>图书</span> </li>
+            <li>11F <span>服务</span> </li>
+            <li class="last">Top</li>
+        </ul>
+    </div>
+    <!--楼层内容开始-->
+    <div id="header">头部</div>
+    <div id="main">
+        <!--各楼层内容-->
+        <div class="Louti" style="background: #cc0033;">服饰</div>
+        <div class="Louti" style="background: #999933;">美妆</div>
+        <div class="Louti" style="background: #ccff33;">手机</div>
+        <div class="Louti" style="background: #006633;">家电</div>
+        <div class="Louti" style="background: #6666cc;">数码</div>
+        <div class="Louti" style="background: #ff6600;">运动</div>
+        <div class="Louti" style="background: #ffcc00;">居家</div>
+        <div class="Louti" style="background: #3333ff;">母婴</div>
+        <div class="Louti" style="background: #ff00cc;">食品</div>
+        <div class="Louti" style="background: #669900;">图书</div>
+        <div class="Louti" style="background: #ff66cc;">服务</div>
+    </div>
+    <div id="footer">尾部</div>
+    <!--楼层内容结束-->
+</body>
+<script src="../js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript">
+    //使用jq获取各个元素
+    let $list = $("#LoutiNav li:not(.last)"); //楼层号
+    let $topLi = $(".last"); //回调顶部
+    let $floorDiv = $(".Louti"); //楼层
+    let flag = true; //假设值为true时  滚动条可以被操作
+    $list.click(function () { //给楼梯设置点击事件
+        flag = false; //点击时，滚动条不可以被操作
+        //使用jq改变当前的li的样式
+        $(this).find("span")
+            .addClass("active") //给当前所有li下面的span的标签增加样式
+            .end()
+            .siblings()
+            .find("span")
+            .removeClass("active"); //给其余所有li下面的span标签删除样式
+
+        //获取当前操作的楼层号的下标
+        let index = $(this).index();
+        //根据下标获取对应的楼层
+        let $floor = $floorDiv.eq(index);
+        //获取该楼层相对于body的距离
+        let bTop = $floor.offset().top;
+
+        //设置页面滚走的距离 为 bTop
+        $("body,html").animate({
+            scrollTop: bTop
+        }, 1000, function () {
+            flag = true;
+        });
+    })
+    //回到顶部
+    $topLi.click(function () {
+        flag = false;
+        $("body,html").animate({
+            scrollTop: 0
+        }, 1000, function () {
+            flag = true;
+        });
+    })
+
+    //操作滚动条显示对应的楼层
+    $(window).scroll(function () {
+        if (flag) {
+            //获取页面滚走的距离
+            let sTop = $(document).scrollTop();
+
+            //使用filter遍历每一个楼层 并返回满足某个条件的楼层
+            // 条件: 某个楼层距离body的top值 - 页面滚走的距离 <　楼层高度/2
+            let $fDiv = $floorDiv.filter(function (index) {
+                return Math.abs($(this).offset().top - sTop) < $(this).height() / 2;
+            })
+
+            //获取当前在可视区中高度最高的楼层的下标
+            let index = $fDiv.index();
+            console.log(index)
+            if (index != -1) {
+                //根据下标找到对应要高亮显示的楼层号
+                $list.eq(index).find("span")
+                    .addClass("active")
+                    .end()
+                    .siblings()
+                    .find("span")
+                    .removeClass("active");
+            }
+            if (sTop < 100 || sTop > ($floorDiv.eq(10).offset().top + 300)) {
+                $list.find("span").removeClass("active");
+            }
+        }
+    })
+</script>
+
+</html>
