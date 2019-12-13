@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,
+        ul {
+            margin: 0;
+            padding: 0;
+            border-radius: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .tab {
+            width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            margin: 20px;
+        }
+
+        .list {
+            padding: 30px;
+            border: 1px solid skyblue;
+            width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .list li {
+            display: inline-block;
+            width: 110px;
+            height: 45px;
+            margin: 10px;
+            text-align: center;
+            line-height: 45px;
+            border-radius: 10px;
+            font-size: 20px;
+            border: 1px solid #2e6da4;
+            background-color: #337ab7;
+            color: #fff;
+        }
+
+        li:hover {
+            background-color: #286090;
+            border-color: #204d74;
+        }
+
+        li.active {
+            border-color: rgb(76, 174, 76);
+            background: rgb(92, 184, 92);
+            box-shadow: 4px 4px 5px #666;
+        }
+
+        li.end {
+            border-color: red;
+            background: red;
+            box-shadow: 4px 4px 5px #666;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="title">花式点名</h1>
+    <p class="tab">
+        <button class="btn">点名</button>
+    </p>
+    <ul class="list">
+
+    </ul>
+</body>
+<script>
+    var arr = ['鲁班七号', '妲己', '安琪拉', '墨子', '阿轲', '蔡文姬', '李白', '猴子', '吕布', '貂蝉', '王昭君', '夏侯惇', '后裔', '大保健', '程咬金', '典韦',
+        '虞姬', '大乔', '伽罗', '庄周', '白起', '干将莫邪', '太乙真人', '项羽', '武则天', '嬴政', '赵云', '不知火舞', '狄仁杰', '东皇太一', '诸葛亮', '韩信',
+        '老夫子', '刘邦', '刘禅','上官婉儿','娜可露露','大小姐','公孙离','甄姬','小乔','花木兰','杨戬','狂铁','李信','钟馗','孙策','梦奇','刘备'
+    ];
+    var arrLen = arr.length;
+    var lastArr = [];
+    var oList = document.getElementsByClassName('list')[0];
+    var oBtn = document.getElementsByClassName('btn')[0];
+    var oActive = null;
+    var index;
+    var lastIndex;
+
+    function init() {
+        var str = '';
+        arr.forEach(function (ele, index) {
+            str += '<li>' + ele + '</li>'
+        });
+        oList.innerHTML = str;
+    }
+    init();
+    var timer = null;
+    var flag = false;
+    oBtn.onclick = function () {
+        if (lastArr.length == arrLen) {
+            alert('准备团战');
+            return;
+        }
+        flag = !flag;
+        if (flag) {
+            oBtn.innerHTML = '停止';
+            timer = setInterval(function () {
+                lastIndex = index;
+                randomName();
+            }, 100);
+        } else {
+            clearInterval(timer);
+            oActive.className = 'end';
+            lastArr.push(index);
+            oBtn.innerHTML = '点名';
+        }
+    }
+
+    function randomName() {
+        index = Math.floor(Math.random() * arrLen);
+        if (lastIndex == index) {
+            randomName();
+            return;
+        }
+        for (var i = 0; i < lastArr.length; i++) {
+            if (lastArr[i] == index) {
+                randomName();
+                return;
+            }
+        }
+        if (oActive) {
+            oActive.className = '';
+        }
+        oActive = oList.getElementsByTagName('li')[index];
+        oActive.className = 'active';
+    }
+</script>
+
+</html>
