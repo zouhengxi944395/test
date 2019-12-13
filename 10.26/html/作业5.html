@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+        var yearInp = document.getElementById("year");
+        var btn = document.getElementById("btn");
+        var resultIpn = document.getElementById("result");
+        console.log(yearInp, btn, resultIpn);
+        btn.onclick = function () {
+            var year = yearInp.value;
+            pd(year);
+            function pd(year) {
+                if (year % 4 == 0 && year % 100 != 0 || (year % 400 == 0)) {
+                    resultIpn.value = "闰年";
+                } else {
+                    resultIpn.value = "平年";
+                }
+            }
+        }
+    </script>
+</html>

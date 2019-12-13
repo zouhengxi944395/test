@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        button{
+            width: 51px;
+            height: 23px;
+            line-height: 23px;
+            padding: 0px 2px;
+            color: #6fff;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        // for( var i = 1; i <= 9; i++){
+        //   for(var g = 1;g <= i; g++) {
+        //       document.write(i + '*' + g + '=' + i * g + ' ')
+        //   }
+        //   document.write('<br/>')
+        // }
+
+        // for (var i = 100; i = 999;i++)
+        // var sum = 0;
+        // sum = Math.pow(parseInt(i / 100),3) + Math.pow(parseInt(1 / 100 / 10),3) +Math.pow(i/10)
+        //  for 
+        //      console.log(i)
+        for (var i = 1; i <= 9; i++) {
+            for (var j = 1; j <= i; j++) {
+                document.write('<button>', i + '*' + j + '=' + i * j + '</button>')
+            }
+            document.write('<br/>')
+        }
+        
+        // for (var i = 1; i <= 9; i++) {
+        //     for (var j = 1; j <= i; j++) {
+        //         document.write('<button>',i + '+' + j + '=' + i * j + '</button>')
+        //     }
+        //     document.write('<br/>')
+        // }
+    </script>
+</body>
+
+</html>

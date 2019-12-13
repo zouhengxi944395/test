@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 随机选取10个 1-100的数 放到数组中
+    var arr = [];
+    for (var i = 0; i < 10; i++) {
+        var num = Math.round(Math.random() * 99) + 1;
+        arr[i] = num;
+    }
+    console.log(arr);
+
+
+    // 取十个数中的最小值
+    // var min = arr[0];
+    // for (var i = 0; i < arr.length; i++) {
+    //     if (min > arr[i]) {
+    //         min = arr[i];
+    //     }
+    // }
+    console.log(min);
+
+    // 求出十个数的和以及平均值
+    // sum = 0;
+    // for (var i = 0; i < arr.length; i++) {
+    //     var item = arr[i];
+    //     sum += item;
+    // }
+    // console.log(sum);
+
+    // 再算 平均值
+    // var ave = sum / arr.length;
+    // console.log(ave);
+
+   // 将随机的10个数中大于平均值的数 取出来放到新的数组中
+    var list = [];
+    for (var i = 0; i < arr.length; i++) {
+        var item = arr[i];
+        if (item > ave) {
+            list[list.length] = item;
+        }
+    }
+    console.log(list);
+    
+    // 判断随机的10个数是否都 大于50   都大于 为true  否则为false
+  var arr = [68, 99, 83, 45, 17, 69, 2, 29, 44, 93];
+    var flag = true;
+    for(var i = 0; i < arr.length; i++){
+        var str = arr[i];
+        if(str > 50){
+            var flag = true;
+        }else{
+            var flag = false;
+        }
+    }
+
+</script>
+
+</html>

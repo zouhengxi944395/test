@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #full-pic {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            background: #eee;
+        }
+
+        #full-pic>img {
+            display: block;
+            height: 400px;
+            margin: 0 auto;
+        }
+
+        #pic-span {
+            display: none;
+            position: absolute;
+            cursor: move;
+            width: 200px;
+            height: 200px;
+            background: rgba(0, 0, blue, 0.5);
+            left: 0px;
+            top: 0px;
+            z-index: 1;
+        }
+
+        #big-pic {
+            width: 400px;
+            height: 400px;
+            overflow: hidden;
+            background: white;
+            position: absolute;
+            left: 410px;
+            top: 0;
+            display: block;
+        }
+
+        #big-pic>img {
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<div id="full-pic">
+        <img src="./img/21.png" alt="">
+        <span id="pic-span"></span>
+        <div id="big-pic">
+                <img src="./img/20.png" alt="">
+            </div>
+</div>
+
+<body>
+    <script>
+        var pic_div = document.getElementById('full-pic'); //拿到整个大的div
+        var normal_pic = pic_div.getElementsByTagName('img')[0]; //拿到div中的图片
+        var span_move = document.getElementById('pic-span'); //拿到显示当前图片位置的span
+        var big_div = document.getElementById('big-pic'); //拿到右边放置放大图片的div
+        var pic_move = big_div.getElementsByTagName('img')[0]; //拿到右侧放大的图片本身
+
+        //当鼠标在最外层div中滑动的时候触发事件，因为要获取当前的鼠标位置所以要拿到事件源evt
+        pic_div.onmousemove = function (evt) {
+            // 获取事件
+            var e = evt || window.event;
+            // 在这里解释一下为什么事件要加在外围最大的div上， 因为当时做的时候没有注意到这些样板图图片的宽高比例是不同的
+
+            // 大部分为1: 1， 也有小部分2: 3 等等其他比例的， 这样的话就导致限制高度为400px后， 不同比例的图片他们的宽度也就不同
+
+
+
+            // 获取大图和小图之间的倍数     
+            var bigSize = pic_move.offsetHeight;
+            var littleSize = normal_pic.offsetHeight;
+            var n = bigSize / littleSize;
+            // 因为图片的比例是不同的， 导致他们显示出来的宽度不同， 当我限制他们的高度为400px时
+
+            // 非1: 1 比例的图片他们的宽度就变得很不规律了， 这时候只能通过他们的高度变化来获取他们整体缩放了多少倍
+            //获取pic对于页面的绝对位置
+            var pic_x = normal_pic.getBoundingClientRect().left;
+            var pic_y = normal_pic.getBoundingClientRect().top + document.documentElement.scrollTop;
+            // 为什么使用了getBoundingClientRect() 这个方法？
+
+            //  getBoundingClientRect
+            // () 会返回一个数据数组， 包含了当前元素在浏览器中的位置， 包括left， right， top和bottom等， 通过这个方法我们可以拿到居中的样板图对于浏览器的相对位置。 获取后的数据处理后面有写到）
+
+            // 因为我们要获取鼠标在整个最外面div里面的相对位置来让span移动（ 控制显示范围）
+            // 之前我使用的是clientLeft， 但是我发现使用clientLeft时， 并不能实现预期的功能， 会出现一定的误差。
+
+            // 获取鼠标相对full-pic的位置
+            var mouse_x = e.pageX - pic_x;
+            var mouse_y = e.pageY - pic_y;
+            // 产生这个问题的原因在于， 图片的比例是不尽相同的， 除了大部分的1: 1， 还有2: 3 这种比例， 而这是我们又将图片的高度限制为400px， 同时我们将图片设为居中， 当比例为2:
+            //     3 时， 就会在full - pic这个div中居中并产生一个左右的margin值， 若直接使用鼠标在full - pic中移动的数据的话就会产生一个误差值。
+
+            // 因此最后我选择了使用pageX - 样板图的左侧在当前页面中的绝对位置来得到鼠标对于图片的相对位置。
+
+            // 获取鼠标在图片中纵向的相对位置时， 先拿到了样板图的顶部在页面中的绝对位置， 然后和页面滚动距离相加， 就拿到了当前图片的顶部在文档流中的绝对位置。 再使用pageY减去这个位置， 即可拿到鼠标对于样板图的相对移动位置。
+
+
+
+
+            //将两个div的设置为显示
+            big_div.style.display = 'block';
+            span_move.style.display = 'block';
+
+
+            // 设置边际以及图片移动的算法
+
+            span_move.style.width = normal_pic.offsetWidth / 2 + 'px';
+            span_move.style.height = normal_pic.offsetWidth / 2 + 'px';
+            // 这两句代码是用来控制span的宽度和高度， 因为我发现span的大小不是固定的， 而是随着样板图的宽度变化的且永远是样板图宽度的一半， 且高度和宽度相同， span为一个正方形
+
+            // 设置完span的宽度， 因为我们需要让span的中心始终跟着鼠标
+
+            // 所以判断条件的两个临界值分别为span.width / 2 以及图片宽度减去span.width / 2
+            // normal_pic高度固定为400px, 宽度不一定， 一般为400px
+
+            //设置边际以及图片移动的算法
+            if (mouse_x <= span_move.offsetWidth / 2) {
+                //在最左侧不发生移动的情况
+                pic_move.style.left = '0px'; //右边大图位置为0px
+                span_move.style.left = normal_pic.offsetLeft + 'px'; //span始终和图片左端对齐
+            } else
+            if (mouse_x > span_move.offsetWidth / 2 && mouse_x < normal_pic.offsetWidth - span_move.offsetWidth /
+                2) {
+                normal_pic.offsetWidth - span_move.offsetWidth //2 这个是我们限制的鼠标最右可以移动到的范围这是这个边界的解释
+                // 用鼠标的相对位置减去span.width/2可以得到span要移动的距离
+
+                var tempX = mouse_x - span_move.offsetWidth / 2;
+                pic_move.style.left = -n * (tempX) + 'px'; //控制右侧大图的移动
+                span_move.style.left = tempX + normal_pic.offsetLeft + 'px'; //控制span位置的移动
+                // 在设置span的移动时候给span加上了normal_pic.offsetLeft这个值，因为tempX是鼠标相对于样板图的位置，而样板图相对于外层的div始终可能会有一个偏移量，如果不加上会就会在中间产生一个范围让span移动到图片左侧之外。所以我们需要给span加上这个偏移量，限制它的左侧范围。
+
+                // 我们在大图的div中设置了overflow：hidden属性，因此可以通过控制大图的移动来控制显示范围
+
+            } else {
+                //当移动到最右端的时候，停止span的移动，大图也移动到相应的最右端，此时可以通过一个n来控制大图的移动了
+                pic_move.style.left = -n * (normal_pic.offsetWidth - span_move.offsetWidth) + 'px';
+                span_move.style.left = normal_pic.offsetLeft + normal_pic.offsetWidth - span_move.offsetWidth +
+                'px';
+            }
+            // n是大图和小图的倍数，normal_pic.offsetWidth - span_move.offsetWidth是小图移动的距离
+
+            // 上下移动的控制
+
+            // 虽然图片的高度都是400px，上下边界可以用100和300来限制，但为了普适一些，把100和300转化成了相应的求值代码
+
+            if (mouse_y <= span_move.offsetWidth / 2) {
+                pic_move.style.top = '0px';
+                span_move.style.top = '0px';
+            } else if (mouse_y > span_move.offsetHeight / 2 && mouse_y < normal_pic.offsetHeight - span_move
+                .offsetHeight / 2) {
+                var tempY = mouse_y - span_move.offsetHeight / 2;
+                pic_move.style.top = -n * tempY + 'px';
+                span_move.style.top = tempY + 'px';
+            } else {
+                pic_move.style.top = -(n - 1) * normal_pic.offsetHeight + 'px';
+                span_move.style.top = normal_pic.offsetHeight - span_move.offsetHeight + 'px';
+            }
+
+
+        }
+
+
+        pic_div.onmouseout = function () {
+            span_move.style.display = 'none';
+            big_div.style.display = 'none';
+        }
+              
+    </script>
+
+</body>
+
+</html>

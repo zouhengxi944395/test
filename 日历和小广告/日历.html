@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #box {
+            width: 280px;
+            height: 360px;
+            margin: 50px auto;
+            background-color: black;
+            color: aliceblue;
+            line-height: 40px;
+        }
+
+        #header {
+            height: 40px;
+            color: aliceblue;
+            line-height: 40px;
+        }
+
+        #header span {
+            float: left;
+            text-align: center;
+            margin-top: 10px;
+            line-height: 40px;
+        }
+
+        #prev,
+        #next {
+            width: 20%;
+            line-height: 40px;
+            cursor: pointer;
+        }
+
+        #current {
+            width: 60%;
+            line-height: 40px;
+        }
+
+        #week li {
+            width: 40px;
+            text-align: center;
+            float: left;
+            line-height: 40px;
+        }
+
+        #content li {
+            width: 40px;
+            text-align: center;
+            float: left;
+            line-height: 40px;
+        }
+    </style>
+</head>
+<div id="box">
+    <div id="header">
+        <span id="prev">上</span>
+        <span id="current"></span>
+        <span id="next">下</span>
+    </div>
+    <ul id="week">
+        <li>日</li>
+        <li>一</li>
+        <li>二</li>
+        <li>三</li>
+        <li>四</li>
+        <li>五</li>
+        <li>六</li>
+    </ul>
+    <ul id="content">
+
+    </ul>
+</div>
+
+<body>
+
+</body>
+<script>
+     var oPrev = document.getElementById("prev");
+    var oCurrent = document.getElementById("current");
+    var oNext = document.getElementById("next");
+    var oContent = document.getElementById("content");
+
+    var date = new Date();
+
+    renderUl(getPrevData(date), getCurrentData(date));
+    renderHead(date);
+
+    // 绑定点击事件
+    oPrev.onclick = function () {
+        date.setDate(1);
+        date.setMonth(date.getMonth() - 1);
+        renderUl(getPrevData(date), getCurrentData(date));
+        renderHead(date);
+    }
+    oNext.onclick = function () {
+        date.setDate(1);
+        date.setMonth(date.getMonth() + 1);
+        renderUl(getPrevData(date), getCurrentData(date));
+        renderHead(date);
+    }
+    // 渲染头部函数
+    function renderHead(date) {
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        oCurrent.innerHTML = year + '-' + month;
+    }
+    // 渲染ul的函数
+    function renderUl(prevData, currentData) {
+        var html = ''
+        for (var i = 0; i < prevData.length; i++) {
+            html += '<li style="color: red">' + prevData[i] + '</li>'
+        }
+        for (var i = 0; i < currentData.length; i++) {
+            html += '<li>' + currentData[i] + '</li>'
+        }
+        var nextData = [];
+        for (var i = 1; i <= 42 - prevData.length - currentData.length; i++) {
+            nextData.push(i);
+        }
+        for (var i = 0; i < nextData.length; i++) {
+            html += '<li style="color: red">' + nextData[i] + '</li>'
+        }
+        oContent.innerHTML = html;
+    }
+    // 计算当前月的天数数组
+    function getCurrentData(date) {
+        var date = new Date(date); // 新地址
+
+        date.setDate(1) // 设置成一个每个月都有的天数
+        var month = date.getMonth(); // 拿到当前的month
+        date.setMonth(month + 1); // 去下一个月
+
+        date.setDate(0);
+
+        var days = date.getDate();
+        // console.log(days)
+        var arr = [];
+        for (var i = 1; i <= days; i++) {
+            arr.push(i)
+        }
+        // console.log(arr)
+        return arr;
+    }
+    // 计算上月剩余天数的数组
+    function getPrevData(date) {
+        var date = new Date(date);
+        date.setDate(1);
+        var week = date.getDay();
+        var month = date.getMonth();
+        date.setMonth(month - 1);
+
+        var list = getCurrentData(date);
+        //  console.log(list)
+        var arr = [];
+        // for(var i = list.length -1 ; i >= list.length - ; i--) {
+        //   arr.push(arr[i])
+        // }
+        // [29,30,31]
+        for (var i = 0; i < week; i++) {
+            arr.unshift(list[list.length - 1 - i])
+        }
+        console.log(arr);
+        return arr;
+    }
+</script>
+
+</html>

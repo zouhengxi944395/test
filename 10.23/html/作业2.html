@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <h1>输入的年月日是当年的第多少天</h1>
+        <hr>
+        <input type="text" id="year" placeholder="请输入年">         
+        <input type="text" id="month" placeholder="请输入月">
+        <input type="text" id="day" placeholder="请输入日">
+        <button id="btn">检验日期</button>
+        <input type="text" id='result'>
+</body>
+<script>
+    var oYear = document.getElementById("year");
+    var oMonth = document.getElementById("month");
+    var oDay = document.getElementById("day");
+    var oBtn = document.getElementById("btn");
+    var oResult = document.getElementById("result");
+    function calc(year, month, day) {
+          var res = 0;
+          var maxDay = 31;
+          if (month == 4 || month == 6 || month == 9 || month == 11) {
+           maxDay = 30;
+          }
+          if (month == 2) {
+           maxDay = 28;
+            if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {
+             maxDay = 29;
+            }
+          }
+          var n = 28;
+          if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {
+            n = 29;
+          }
+          if (year >= 0 && year % 1 == 0) {
+            if (month >= 1 && month <= 12 && month % 1 == 0) {
+              if (day >= 1 && day <= maxDay && day % 1 == 0) {
+                switch (month) {
+                  case 12:
+                    res += 30;
+                  case 11:
+                    res += 31;
+                  case 10:
+                    res += 30;
+                  case 9:
+                    res += 31;
+                  case 8:
+                    res += 31;
+                  case 7:
+                    res += 30;
+                  case 6:
+                    res += 31;
+                  case 5:
+                    res += 30;
+                  case 4:
+                    res += 31;
+                  case 3:
+                    res += n;
+                  case 2:
+                    res += 31;
+                  case 1:
+                    res += day;
+                }
+              } else {
+                res = day + '日不合格';
+              }
+            } else {
+              res = month + '月份不合格';
+            }
+          } else {
+            res = year + '年份不合格';
+          }
+          return res;
+        }
+        oBtn.onclick = function () {
+          year = oYear.value * 1;
+          month = oMonth.value * 1;
+          day = oDay.value * 1;
+          oResult.value = calc(year, month, day);
+        }
+</script>
+</html>

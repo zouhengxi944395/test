@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #ad {
+            width: 300px;
+            height: 350px;
+            background-color: #6ff;
+            position: fixed;
+            bottom: 5px;
+            right: 5px;
+            display: none;
+        }
+
+        #ad .title {
+            overflow: hidden;
+            width: 100%;
+        }
+
+        #ad .title .countBox {
+            float: left;
+        }
+
+        #ad .title #close {
+            float: right;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            text-align: center;
+            line-height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="ad">
+        <div class="title" data-tag="true">
+            <div class="countBox">距离广告关闭还有<span id="count">10</span>秒</div>
+            <div id="close">×</div>
+        </div>
+    </div>
+</body>
+<script>
+    var oAd = document.getElementById("ad");
+    var oCount = document.getElementById("count");
+    var oClose = document.getElementById("close");
+
+
+    setTimeout(function () {
+        oAd.style.display = 'block';
+        oClose.onclick = function () {
+            clearInterval(timer);
+            oAd.style.display = 'none';
+        }
+        var timer = setInterval(function () {
+            var count = oCount.innerText * 1;
+            // count--;
+            if (count === 1) {
+                clearInterval(timer);
+                oAd.style.display = 'none';
+            }
+            oCount.innerText = --count;
+        }, 1000)
+    }, 2000)
+</script>
+
+</html>
